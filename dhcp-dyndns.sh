@@ -52,9 +52,9 @@ _KERBEROS () {
     if [ "$?" != "0" ]; then
         logger "${test} [dyndns] : Getting new ticket, old one has expired"
         if [[ "$OSTYPE" == "freebsd"* ]]; then
-            kinit --no-forwardable -k -t /etc/dhcpduser.keytab "${SETPRINCIPAL}"
+            kinit --no-forwardable -k -t /etc/dhcp/dhcpduser.keytab "${SETPRINCIPAL}"
         else
-            kinit -F -k -t /etc/dhcpduser.keytab "${SETPRINCIPAL}"
+            kinit -F -k -t /etc/dhcp/dhcpduser.keytab "${SETPRINCIPAL}"
         fi
         if [ "$?" != "0" ]; then
             logger "${test} [dyndns] : dhcpd kinit for dynamic DNS failed"
@@ -149,7 +149,7 @@ if [ -z "${TESTUSER}" ]; then
 fi
 
 # Check for Kerberos keytab
-if [ ! -f /etc/dhcpduser.keytab ]; then
+if [ ! -f /etc/dhcp/dhcpduser.keytab ]; then
     echo "Required keytab /etc/dhcpduser.keytab not found, it needs to be created."
     echo "Use the following commands as root"
     echo "samba-tool domain exportkeytab --principal=${SETPRINCIPAL} /etc/dhcpduser.keytab"
