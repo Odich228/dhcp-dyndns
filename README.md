@@ -1,4 +1,4 @@
-# DHCP-DYDNS
+# DHCP-DYNDNS
 Это Bash-скрипт для безопасного динамического обновления DNS(DDNS) в среде Samba/Active Directory,
 который вызывается DHCP-сервером (ISC DHCPd) при выдаче или освобождения адресов
 
